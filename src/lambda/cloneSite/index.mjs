@@ -73,16 +73,18 @@ export const handler = async (event) => {
     // };
     response = await cloneSite(input);
   } catch (error) {
-    httpStatusCode = 500;
-    body = {
-      message: error?.message,
+    return {
+      httpStatusCode: 500,
+      body: {
+        message: error?.message,
+      },
     };
   }
 
   return {
     httpStatusCode: httpStatusCode,
     body: {
-      message: "Hello from your Amplify Function!",
+      message: "Site cloned successfully. Check the response for details.",
       data: JSON.stringify(response),
     },
   };
